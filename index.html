@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiddiesDaycare</title>
+    <link rel="icon"
+        href="https://raw.githubusercontent.com/kiddies073/kiddies073.github.io/refs/heads/main/kfavicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4456a4;
+            --accent-color: #ea475b;
+            --light-blue: #a4c8e0;
+            --light-pink: #f8c0c8;
+            --light-yellow: #fdd877;
+            --background-color: #f9f9f9;
+            --text-color: #333;
+            --button-text-color: #ffffff;
+            --font-family: 'Baloo 2', cursive;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Sticky Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .logo {
+            height: 50px;
+            cursor: pointer;
+        }
+
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Collapsible Menu for Mobile */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                background-color: var(--accent-color);
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            nav a {
+                margin: 10px 0;
+                color: var(--button-text-color);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .menu-open nav {
+                display: flex;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--button-text-color);
+            padding: 20px;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 10px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: var(--button-text-color);
+            color: var(--accent-color);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.3s;
+            display: inline-block;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            color: var(--button-text-color);
+            transform: scale(1.05);
+        }
+
+        /* Character Image Styling */
+        .hero-character-left,
+        .hero-character-right {
+            position: absolute;
+            bottom: 0;
+            width: 300px;
+        }
+
+        .hero-character-left {
+            left: 0;
+            max-width: 40%;
+        }
+
+        .hero-character-right {
+            right: 0;
+            max-width: 40%;
+        }
+
+        .footer-character-left {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 200px;
+            max-width: 25%;
+        }
+
+        .footer-character-right {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 200px;
+            max-width: 25%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background: var(--background-color);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .card {
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: calc(100% - 30px);
+            max-width: 350px;
+            text-align: center;
+            color: var(--text-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:nth-child(1) {
+            background: var(--light-blue);
+        }
+
+        .card:nth-child(2) {
+            background: var(--light-pink);
+        }
+
+        .card:nth-child(3) {
+            background: var(--light-yellow);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--accent-color);
+            color: var(--button-text-color);
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            position: relative;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            nav a {
+                margin: 5px 0;
+            }
+
+            .feature-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-character-left,
+            .hero-character-right,
+            .footer-character-left,
+            .footer-character-right {
+                width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn-primary {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 60px 10px;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 10px;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .hero-character-left,
+            .hero-character-right {
+                width: 100px;
+                max-width: 25%;
+            }
+
+            .footer-character-left,
+            .footer-character-right {
+                width: 80px;
+                max-width: 20%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://raw.githubusercontent.com/kiddies073/kiddies073.github.io/refs/heads/main/kiddiesDaycare.png"
+            alt="Kiddies logo" class="logo">
+        <div class="menu-toggle">&#9776;</div>
+        <nav>
+            <a href="#about">About Us</a>
+            <a href="#programs">Programs</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Kiddies Daycare</h1>
+            <p>Empowering Young Minds in Brooklyn, NY</p>
+            <a href="#contact" class="btn-primary">Get in Touch</a>
+        </div>
+        <img src="https://raw.githubusercontent.com/kiddies073/kiddies073.github.io/refs/heads/main/image1%20(1).png"
+            alt="Character" class="hero-character-left">
+        <img src="https://raw.githubusercontent.com/kiddies073/kiddies073.github.io/refs/heads/main/image2%20(1).png"
+            alt="Character" class="hero-character-right">
+    </section>
+
+    <div class="container">
+        <section class="section" id="about">
+            <h2>About Us</h2>
+            <p>Kiddies Daycare offers a nurturing environment for children to grow, learn, and thrive. Our experienced
+                educators provide interactive and engaging programs designed to foster curiosity and build confidence.
+            </p>
+        </section>
+
+        <section class="section" id="programs">
+            <h2>Our Programs</h2>
+            <div class="feature-cards">
+                <div class="card">
+                    <h3>Full-Time Care</h3>
+                    <p>Comprehensive support that encourages learning and growth through structured activities in a safe
+                        environment.</p>
+                </div>
+                <div class="card">
+                    <h3>After-School Programs</h3>
+                    <p>Engaging activities and educational support tailored to complement your child’s school
+                        experience.</p>
+                </div>
+                <div class="card">
+                    <h3>Summer Camps</h3>
+                    <p>Fun-filled summer adventures designed for exploration and learning in a lively, outdoor setting.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <h2>Contact Us</h2>
+            <p>We’d love to hear from you! Contact us today to learn more about our programs or schedule a visit:</p>
+            <p><strong>Phone:</strong> (718) 504-0027</p>
+            <p><strong>Address:</strong> 58 Union Ave Brooklyn, NY 11206</p>
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2024 Kiddies Daycare. All rights reserved. Proudly serving families in Brooklyn, NY.
+        <img src="https://raw.githubusercontent.com/kiddies073/kiddies073.github.io/refs/heads/main/image3%20(1).png"
+            alt="Character" class="footer-character-left">
+        <img src="https://raw.githubusercontent.com/kiddies073/kiddies073.github.io/refs/heads/main/image4%20(1).png"
+            alt="Character" class="footer-character-right">
+    </footer>
+
+    <script>
+        // Toggle for mobile menu
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('menu-open');
+        });
+    </script>
+</body>
+
+</html>
